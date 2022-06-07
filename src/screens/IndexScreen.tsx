@@ -1,14 +1,15 @@
 import React from "react";
 import {View, Text, StyleSheet, FlatList, TouchableOpacity} from "react-native";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Feather} from '@expo/vector-icons';
-import {delete} from '../slices/changeBlogPost';
+import {remove} from '../slices/changeBlogPost';
 
-const IndexScreen = ({navigation}) => {
+const IndexScreen = ({ navigation }: any) => {
     const {blogs} = useSelector(state => state.blogs);
+    const dispatch = useDispatch();
 
     return (<View>
-        <TouchableOpacity onPress={() => navigation.navigate()}>
+        <TouchableOpacity>
             <Text style={styles.button}>
                 Add Post +
             </Text>
@@ -17,17 +18,19 @@ const IndexScreen = ({navigation}) => {
             keyExtractor={(post) => post.id}
             data={blogs}
             renderItem={({item}) => {
-                return <View style={styles.row}>
-                    <Text style={styles.title}>
-                        {item.title}
-                    </Text>
-                    <TouchableOpacity >
-                        <Feather
-                            name='trash'
-                            style={styles.icon}
-                        />
-                    </TouchableOpacity>
-                </View>
+                return (<View style={styles.row}>
+                        <TouchableOpacity onPress={() => navigation.navigate('Show', {id: item.id})}>
+                            <Text style={styles.title}>
+                                {item.title}
+                            </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => dispatch(remove(item.id))}>
+                            <Feather
+                                name='trash'
+                                style={styles.icon}
+                            />
+                        </TouchableOpacity>
+                    </View>)
             }}
         />
     </View>)

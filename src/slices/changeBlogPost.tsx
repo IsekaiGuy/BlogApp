@@ -25,12 +25,13 @@ export const blogSlice = createSlice({
         add: (state: BlogState, action: PayloadAction<Blog>) => {
             state.blogs.push(action.payload)
         },
-        delete: (state: BlogState, action: any) => {
-            state.blogs.filter(blog => blog.id !== action.payload.id)
+        remove: (state: BlogState, action: any) => {
+            console.log(action, state);
+            state.blogs.filter(blog => blog.id !== action.payload)
         },
     },
 })
 
-export const { add, delete } = blogSlice.actions;
+export const {remove, add} = blogSlice.actions;
 
 export default blogSlice.reducer;

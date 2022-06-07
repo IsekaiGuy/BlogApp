@@ -1,10 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
-import blogs from '../slices/changeBlogPost';
+import blogs from '../slices/blogSlice';
 
 export const store = configureStore({
-    reducer: {
-        blogs
-    },
+    reducer: blogs
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

@@ -1,9 +1,10 @@
 import React from "react";
 import {View, Text, StyleSheet} from "react-native";
 import {useSelector} from "react-redux";
+import {IBlogs, IBlog} from "../slices/blogSlice";
 
 const ShowScreen = (props: any) => {
-    const post = useSelector((state: any) => state.blogs.blogs.filter((item: any) => item.id === props.route.params.id)[0]);
+    const post = useSelector((state: IBlogs) => state.blogs.filter((item: IBlog) => item.id === props.route.params.id)[0]);
 
     return (<View>
         <Text style={styles.title}>

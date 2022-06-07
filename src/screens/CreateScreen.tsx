@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {View, TextInput, Text, StyleSheet, Button} from "react-native";
 import {useDispatch} from "react-redux";
-import {add} from "../slices/changeBlogPost";
+import {add} from "../slices/blogSlice";
 
 const CreateScreen = ({navigation}:any) => {
     const [state, setState] = useState({title:'', text: ''});
@@ -29,6 +29,7 @@ const CreateScreen = ({navigation}:any) => {
             />
         </View>
         <Button
+            disabled={state.title.length < 3 || state.text.length < 3}
             title='Add Post'
             onPress={() => {
                 dispatch(add({...state, id: Math.floor(Math.random() * 1000)}));

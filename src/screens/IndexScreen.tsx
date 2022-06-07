@@ -2,21 +2,16 @@ import React from "react";
 import {View, Text, StyleSheet, FlatList, TouchableOpacity} from "react-native";
 import {useDispatch, useSelector} from "react-redux";
 import {Feather} from '@expo/vector-icons';
-import {remove} from '../slices/changeBlogPost';
+import {remove} from '../slices/blogSlice';
+import {IBlogs, IBlog} from "../slices/blogSlice";
 
 const IndexScreen = ({ navigation }: any) => {
-    const {blogs} = useSelector((state: any) => state.blogs);
+    const {blogs} = useSelector((state: IBlogs) => state);
     const dispatch = useDispatch();
-    console.log(blogs);
 
     return (<View>
-        <TouchableOpacity  onPress={() => navigation.navigate('Create')}>
-            <Text style={styles.button}>
-                Add Post +
-            </Text>
-        </TouchableOpacity>
         <FlatList
-            keyExtractor={(post) => post.id}
+            keyExtractor={(post: IBlog) => post.id + ''}
             data={blogs}
             renderItem={({item}) => {
                 return (<View style={styles.row}>
@@ -48,17 +43,10 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderBottomColor: 'grey',
         padding: 10,
-        marginVertical: 15
+        marginVertical: 15,
     },
     title: {
         fontSize: 18,
-    },
-    button: {
-        fontSize: 22,
-        fontWeight: 'bold',
-        textAlign: 'center',
-        paddingVertical: 20,
-        backgroundColor: 'lightblue'
     }
 })
 

@@ -6,9 +6,8 @@ import { Provider } from 'react-redux'
 
 const Stack = createNativeStackNavigator();
 
-function App() {
-    return (
-        <Provider store={store}>
+export default function App() {
+    return (<Provider store={store}>
             <NavigationContainer>
                 <Stack.Navigator initialRouteName="Index">
                     <Stack.Screen
@@ -19,7 +18,5 @@ function App() {
                 </Stack.Navigator>
             </NavigationContainer>
         </Provider>
-    );
+    )
 }
-
-export default App;

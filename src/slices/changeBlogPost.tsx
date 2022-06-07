@@ -22,8 +22,9 @@ export const blogSlice = createSlice({
             state.blogs.push(action.payload)
         },
         remove: (state: BlogState, action: any) => {
-            console.log(action, state);
-            state.blogs.filter(blog => blog.id !== action.payload)
+            const result = state.blogs.filter(blog => blog.id !== action.payload)
+            state.blogs = [];
+            state.blogs.push(...result);
         },
     },
 })

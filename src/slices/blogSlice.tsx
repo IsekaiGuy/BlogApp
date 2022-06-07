@@ -26,9 +26,17 @@ export const blogSlice = createSlice({
             state.blogs = [];
             state.blogs.push(...result);
         },
+        edit: (state: IBlogs, action: PayloadAction<IBlog>) => {
+            state.blogs.map(post => {
+                if (post.id === action.payload.id) {
+                    post.title = action.payload.title;
+                    post.text = action.payload.text;
+                }
+            })
+        },
     },
 })
 
-export const {remove, add} = blogSlice.actions;
+export const {remove, add, edit} = blogSlice.actions;
 
 export default blogSlice.reducer;

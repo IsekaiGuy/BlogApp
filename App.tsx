@@ -7,6 +7,8 @@ import ShowScreen from "./src/screens/ShowScreen";
 import CreateScreen from "./src/screens/CreateScreen";
 import {Text, TouchableOpacity} from "react-native";
 import React from "react";
+import EditScreen from "./src/screens/EditScreen";
+import { AntDesign } from '@expo/vector-icons';
 
 const Stack = createNativeStackNavigator();
 
@@ -31,12 +33,25 @@ export default function App() {
                     <Stack.Screen
                         name="Show"
                         component={ShowScreen}
-                        options={{ title: 'Show Post' }}
+                        options={({ navigation, route }) => ({
+                            headerTitle: 'Show Post',
+                            headerRight: () => (
+                                // @ts-ignore
+                                <TouchableOpacity  onPress={() => navigation.navigate('Edit', {id: route.params.id})}>
+                                    <AntDesign name="edit" size={24} color="black" />
+                                </TouchableOpacity>
+                            ),
+                        })}
                     />
                     <Stack.Screen
                         name="Create"
                         component={CreateScreen}
                         options={{ title: 'Add Post' }}
+                    />
+                    <Stack.Screen
+                        name="Edit"
+                        component={EditScreen}
+                        options={{ title: 'Edit Post' }}
                     />
                 </Stack.Navigator>
             </NavigationContainer>

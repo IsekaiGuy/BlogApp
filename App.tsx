@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { store } from "./src/store/configureStore";
 import { Provider } from 'react-redux';
 import ShowScreen from "./src/screens/ShowScreen";
+import CreateScreen from "./src/screens/CreateScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -20,6 +21,11 @@ export default function App() {
                         name="Show"
                         component={ShowScreen}
                         options={{ title: 'Show Post' }}
+                    />
+                    <Stack.Screen
+                        name="Create"
+                        component={CreateScreen}
+                        options={{ title: 'Add Post' }}
                     />
                 </Stack.Navigator>
             </NavigationContainer>

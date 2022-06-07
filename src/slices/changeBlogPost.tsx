@@ -11,11 +11,7 @@ export interface Blog {
 }
 
 const initialState: BlogState = {
-    blogs: [{
-        id: 1,
-        title: 'First title',
-        text: 'Some text'
-    }]
+    blogs: []
 }
 
 export const blogSlice = createSlice({

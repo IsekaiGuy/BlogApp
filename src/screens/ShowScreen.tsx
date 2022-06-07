@@ -3,7 +3,7 @@ import {View, Text, StyleSheet} from "react-native";
 import {useSelector} from "react-redux";
 
 const ShowScreen = (props: any) => {
-    const post = useSelector(state => state.blogs.blogs.filter(item => item.id === props.route.params.id)[0]);
+    const post = useSelector((state: any) => state.blogs.blogs.filter((item: any) => item.id === props.route.params.id)[0]);
 
     return (<View>
         <Text style={styles.title}>

@@ -5,11 +5,12 @@ import {Feather} from '@expo/vector-icons';
 import {remove} from '../slices/changeBlogPost';
 
 const IndexScreen = ({ navigation }: any) => {
-    const {blogs} = useSelector(state => state.blogs);
+    const {blogs} = useSelector((state: any) => state.blogs);
     const dispatch = useDispatch();
+    console.log(blogs);
 
     return (<View>
-        <TouchableOpacity>
+        <TouchableOpacity  onPress={() => navigation.navigate('Create')}>
             <Text style={styles.button}>
                 Add Post +
             </Text>
